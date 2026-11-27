@@ -39,4 +39,59 @@ td,th{padding:10px;border-bottom:1px solid #eee;text-align:left}
 <div class="card" id="pricing"><h2>Choose Your Plan</h2><p class="small">Every client gets the same full platform. No hidden fees. No VAT included.</p><br><div class="grid">
 <div class="price"><p>MONTHLY</p><h2>R400 / month</h2><p class="small">Pay monthly. Cancel anytime.<br>Full Dashboard access.<br>Invoice included.</p><br><button class="btn" onclick="choosePlan('Monthly - R400')">Choose Monthly</button></div>
 <div class="price pop"><span class="badge">BEST VALUE - SAVE R1800</span><p style="margin-top:10px">ANNUAL</p><h2>R3000 / year</h2><p class="small">Pay once per year.<br>Full Dashboard access.<br>Invoice included.</p><br><button class="btn" onclick="choosePlan('Annual - R3000')">Choose Annual</button></div>
-</div><br><p class="small">How payment works: 1) Choose a plan 2) We create your invoice 3) You pay directly via EFT to Thea BusinessDesk entrepreneur account 4) Thea approves you - you get full access. Thea is in control of every client approval.</p></div>
+</div><br><p
+ class="small">How payment works: 1) Choose a plan 2) We create your invoice 3) You pay directly via EFT to Thea BusinessDesk entrepreneur account 4) Thea approves you - you get full access. Thea is in control of every client approval.</p></div>
+<div class="card" id="signin"><h2>Client Sign In</h2><p class="small">Existing clients: sign in to your dashboard. New clients: choose a plan above first.</p><br>
+<label>Your Name</label><input id="loginName" placeholder="e.g. Thea Jacobs">
+<label>Email Address</label><input id="loginEmail" placeholder="you@email.com">
+<label>Your Plan</label><select id="loginPlan"><option>Monthly - R400</option><option>Annual - R3000</option></select>
+<button class="btn" onclick="login()">Sign In to Dashboard →</button>
+<p class="small" id="loginMsg" style="margin-top:10px"></p></div>
+
+<div class="card" id="dash"><h2>📊 Business Dashboard <span id="welcome"></span></h2><p class="small">This is your central place. You control it. AI does not work for your clients automatically - you approve, you manage.</p><br>
+<div class="topbar"><button class="btn" onclick="showTab('customers')">Customers</button><button class="btn" onclick="showTab('invoices')">Invoices</button><button class="btn" onclick="showTab('payments')">Payments</button><button class="btn" onclick="showTab('bank')">My Bank Details</button></div><br>
+
+<div id="tab-customers"><h3>Customers</h3><br>
+<label>Customer Name</label><input id="cName" placeholder="Customer name">
+<label>Customer Email</label><input id="cEmail" placeholder="customer@email.com">
+<button class="btn" onclick="addCustomer()">+ Add Customer</button><br><br>
+<table><tr><th>Name</th><th>Email</th><th>Status</th></tr><tbody id="custList"><tr><td>Example Client</td><td>client@example.com</td><td>✅ Active</td></tr></tbody></table></div>
+
+<div id="tab-invoices" class="hidden"><h3>Invoices</h3><br>
+<label>Client Name</label><input id="invName" placeholder="Client name">
+<label>Amount (R) - No VAT</label><input id="invAmount" type="number" placeholder="400">
+<button class="btn" onclick="makeInvoice()">Generate Invoice</button><br><br><div id="invoiceOut"></div></div>
+
+<div id="tab-payments" class="hidden"><h3>Payments</h3><br>
+<label>Who Paid?</label><input id="payName" placeholder="Client name">
+<label>Amount (R)</label><input id="payAmount" type="number" placeholder="400">
+<button class="btn" onclick="addPayment()">Record Payment</button><br><br><div id="payList"><p class="small">No payments yet.</p></div></div>
+
+<div id="tab-bank" class="hidden"><h3>My Bank Details</h3><p class="small">This shows on your invoices. Clients pay directly to you via EFT.</p><br>
+<label>Bank Name</label><input id="bankName" placeholder="e.g. Capitec">
+<label>Account Holder</label><input id="bankHolder" placeholder="Thea Jacobs">
+<label>Account Number</label><input id="bankAcc" placeholder="1234567890">
+<label>Branch Code</label><input id="bankBranch" placeholder="470010">
+<button class="btn" onclick="saveBank()">Save Bank Details</button><p class="small" id="bankMsg" style="margin-top:10px"></p></div>
+</div>
+
+<div class="card"><h2>Enquire About Access</h2><p class="small">Fill in below. Your email app will open with your enquiry ready to send to theajacobs42@gmail.com</p><br>
+<label>Full Name</label><input id="qName" placeholder="Full Name">
+<label>Business Name</label><input id="qBiz" placeholder="Business Name">
+<label>Email Address</label><input id="qEmail" placeholder="Email">
+<label>Industry</label><input id="qInd" placeholder="e.g. Retail">
+<label>Your Enquiry</label><textarea id="qMsg" rows="3" placeholder="Your enquiry"></textarea>
+<button class="btn" onclick="enquire()">Prepare Enquiry →</button></div>
+
+<div style="text-align:center;padding:20px" class="small">© 2026 Thea BusinessDesk. All rights reserved. • Small private business • No VAT included • Contact: theajacobs42@gmail.com</div>
+
+<script>
+function choosePlan(p){document.getElementById('loginPlan').value=p;document.getElementById('signin').scrollIntoView();alert('You chose '+p+'. Now fill in your name and email below to sign in.')}
+function login(){let n=document.getElementById('loginName').value;let e=document.getElementById('loginEmail').value;if(!n||!e){alert('Please fill in your name and email');return;}document.getElementById('welcome').innerText='- Welcome, '+n+' ✅';document.getElementById('loginMsg').innerText='Welcome '+n+'! You are signed in. Scroll down to use your Dashboard.';document.getElementById('dash').scrollIntoView();}
+function showTab(t){['customers','invoices','payments','bank'].forEach(x=>document.getElementById('tab-'+x).classList.add('hidden'));document.getElementById('tab-'+t).classList.remove('hidden');}
+function addCustomer(){let n=document.getElementById('cName').value;let e=document.getElementById('cEmail').value;if(!n||!e){alert('Fill in name and email');return;}let tr=document.createElement('tr');tr.innerHTML='<td>'+n+'</td><td>'+e+'</td><td>✅ Active</td>';document.getElementById('custList').appendChild(tr);document.getElementById('cName').value='';document.getElementById('cEmail').value='';}
+function makeInvoice(){let n=document.getElementById('invName').value||'Client';let a=document.getElementById('invAmount').value||'400';let bank=document.getElementById('bankName').value||'[Add your bank in My Bank Details]';let acc=document.getElementById('bankAcc').value||'---';let holder=document.getElementById('bankHolder').value||'Thea Jacobs';let invNo='TBD-'+Math.floor(1000+Math.random()*9000);document.getElementById('invoiceOut').innerHTML='<div class="invoice"><h3>THEA BUSINESSDESK</h3><p class="small">Invoice '+invNo+' • Date: '+new Date().toLocaleDateString()+'</p><hr><p><b>Bill To:</b> '+n+'</p><p>BusinessDesk Access - 1 Month</p><p><b>Amount: R'+a+'</b></p><p>VAT: R0.00 - No VAT included</p><p><b>Total Due: R'+a+'</b></p><hr><p class="small"><b>Pay via EFT to:</b><br>Bank: '+bank+'<br>Account Holder: '+holder+'<br>Account Number: '+acc+'<br>Reference: '+invNo+'</p><p class="small">Thank you for your business!</p></div>';}
+function addPayment(){let n=document.getElementById('payName').value||'Client';let a=document.getElementById('payAmount').value||'0';document.getElementById('payList').innerHTML+='<p>✅ '+n+' paid R'+a+' on '+new Date().toLocaleDateString()+'</p>';}
+function saveBank(){document.getElementById('bankMsg').innerText='✅ Bank details saved! They will now show on your invoices.';}
+function enquire(){let n=document.getElementById('qName').value;let b=document.getElementById('qBiz').value;let e=document.getElementById('qEmail').value;let ind=document.getElementById('qInd').value;let m=document.getElementById('qMsg').value;let subject=encodeURIComponent('New Enquiry - '+b);let body=encodeURIComponent('Name: '+n+'\nBusiness: '+b+'\nEmail: '+e+'\nIndustry: '+ind+'\n\nEnquiry:\n'+m);window.location.href='mailto:theajacobs42@gmail.com?subject='+subject+'&body='+body;}
+</script></body></html>
