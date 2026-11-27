@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thea BusinessDesk - Business Management</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#faf7f2;color:#1c1c1c}
+header{background:#1c1c1c;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+header b{font-size:20px} header span{font-size:11px;opacity:.8;display:block;letter-spacing:2px}
+nav a{color:#fff;text-decoration:none;margin:0 10px;font-size:14px}
+.btn{background:#c06a2e;color:#fff;padding:12px 18px;border:none;border-radius:8px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.hero{background:#faf7f2;color:#1c1c1c;padding:40px 20px;text-align:left}
+.hero h1{font-size:36px;line-height:1.1}
+.hero p{color:#555;margin:14px 0;max-width:600px;line-height:1.6}
+.card{background:#fff;border-radius:14px;padding:20px;margin:16px auto;max-width:1000px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:650px){.grid{grid-template-columns:1fr} nav{display:none}}
+.tool{border:1px solid #eee;border-radius:12px;padding:16px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:6px 0;font-size:15px}
+label{font-size:13px;font-weight:700}
+.price{border:2px solid #1c1c1c;border-radius:14px;padding:20px;text-align:center}
+.price.pop{border-color:#c06a2e;background:#fdf2e9}
+.small{font-size:13px;color:#666;line-height:1.5}
+.badge{background:#fdf2e9;color:#c06a2e;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:10px;border-bottom:1px solid #eee;text-align:left}
+.hidden{display:none}
+.invoice{border:1px dashed #999;padding:18px;border-radius:10px;background:#fffdf5}
+</style></head><body>
+<header><div><b>THEA BUSINESSDESK</b><span>BUSINESS MANAGEMENT</span></div><nav><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#signin">Client Sign In</a></nav><button class="btn" onclick="document.getElementById('signin').scrollIntoView()">Sign In</button></header>
+<div class="hero"><h1>Business Management,<br>Made Clearer</h1><p>Manage your business with greater clarity and control. Customers, products, stock, invoices, payments and tasks - in one place.</p><a class="btn" href="#pricing">See Pricing & Get Access →</a><p class="small">Small private business • No VAT included • Direct payment to entrepreneur account</p></div>
+<div class="card" id="features"><h2>Everything Your Business Needs. In One Place.</h2><br><div class="grid">
+<div class="tool">👥 <b>Customer Management</b><p class="small">Keep customer information organised.</p></div>
+<div class="tool">📦 <b>Product Management</b><p class="small">Manage products, pricing and details.</p></div>
+<div class="tool">📊 <b>Stock Management</b><p class="small">Track stock quantities and movements.</p></div>
+<div class="tool">🧾 <b>Invoice Management</b><p class="small">Create invoices and monitor status. No VAT.</p></div>
+<div class="tool">💳 <b>Payment Management</b><p class="small">Record payments. Direct EFT to entrepreneur account.</p></div>
+<div class="tool">✅ <b>Task Management</b><p class="small">Organise tasks and monitor progress.</p></div>
+</div></div>
+<div class="card" id="pricing"><h2>Choose Your Plan</h2><p class="small">Every client gets the same full platform. No hidden fees. No VAT included.</p><br><div class="grid">
+<div class="price"><p>MONTHLY</p><h2>R400 / month</h2><p class="small">Pay monthly. Cancel anytime.<br>Full Dashboard access.<br>Invoice included.</p><br><button class="btn" onclick="choosePlan('Monthly - R400')">Choose Monthly</button></div>
+<div class="price pop"><span class="badge">BEST VALUE - SAVE R1800</span><p style="margin-top:10px">ANNUAL</p><h2>R3000 / year</h2><p class="small">Pay once per year.<br>Full Dashboard access.<br>Invoice included.</p><br><button class="btn" onclick="choosePlan('Annual - R3000')">Choose Annual</button></div>
+</div><br><p class="small">How payment works: 1) Choose a plan 2) We create your invoice 3) You pay directly via EFT to Thea BusinessDesk entrepreneur account 4) Thea approves you - you get full access. Thea is in control of every client approval.</p></div>
