@@ -94,4 +94,8 @@ function makeInvoice(){let n=document.getElementById('invName').value||'Client';
 function addPayment(){let n=document.getElementById('payName').value||'Client';let a=document.getElementById('payAmount').value||'0';document.getElementById('payList').innerHTML+='<p>✅ '+n+' paid R'+a+' on '+new Date().toLocaleDateString()+'</p>';}
 function saveBank(){document.getElementById('bankMsg').innerText='✅ Bank details saved! They will now show on your invoices.';}
 function enquire(){let n=document.getElementById('qName').value;let b=document.getElementById('qBiz').value;let e=document.getElementById('qEmail').value;let ind=document.getElementById('qInd').value;let m=document.getElementById('qMsg').value;let subject=encodeURIComponent('New Enquiry - '+b);let body=encodeURIComponent('Name: '+n+'\nBusiness: '+b+'\nEmail: '+e+'\nIndustry: '+ind+'\n\nEnquiry:\n'+m);window.location.href='mailto:theajacobs42@gmail.com?subject='+subject+'&body='+body;}
-</script></body></html>
+</script></body></html>let bank=document.getElementById('bankName').value||'[Add your bank in My Bank Details]';
+let acc=document.getElementById('bankAcc').value||'---';
+let holder=document.getElementById('bankHolder').value||'Thea Jacobs';
+let branch=document.getElementById('bankBranch').value||'---';
+let bank='Capitec Bank';let acc='2630305836';let holder='Gezina';let branch='470010'; 
